@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<body>
+  <h1>Helpers to upload images to Wikimedia Commons</h1>
+  <h2>From <a href="http://pid.volare.vorarlberg.at/">volare</a>, Vorarlberger Landesrepositorium</h2>
+  <script>
+  var bookmarklet = function() {
+    var a = document.createElement('script');
+    var base = document.location.href.replace('index.html', '').replace('/$', '');
+    a.src = base + '/volare.js';
+    a.onload=function(){window.volare2commons()};
+    document.head.appendChild(a);
+  }
+  var a = document.createElement('a');
+  a.href = encodeURI('javascript:(' + bookmarklet + ')();');
+  a.appendChild(document.createTextNode('volare2commons – Bookmarklet'));
+  document.body.appendChild(a);
+  </script>
+  <hr>
+  Uses <a href="https://tools.wmflabs.org/url2commons/index.html">URL2Commons</a>
+</body>
+</html>
