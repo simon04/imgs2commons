@@ -2,7 +2,7 @@ window.volare2commons = function() {
 
   var info = extract();
   var href = 'https://tools.wmflabs.org/url2commons/index.html' +
-    '#urls=' + encodeURIComponent(info.img + ' ' + info.title.replace(/ /g, '_') + '.jpg') +
+    '#urls=' + encodeURIComponent(info.img + ' ' + info.title.replace(/\s/g, '-') + '.jpg') +
     '&desc=' + encodeURIComponent(info.description);
   console.log(href);
   window.location = href;
