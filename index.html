@@ -7,12 +7,12 @@
   var base = document.location.href.replace('index.html', '').replace('/$', '');
   var bookmarklet = function() {
     var a = document.createElement('script');
-    a.src = base + '/volare.js';
+    a.src = '{{base}}/volare.js';
     a.onload=function(){window.volare2commons()};
     document.head.appendChild(a);
   }
   var a = document.createElement('a');
-  a.href = encodeURI('javascript:(' + bookmarklet + ')();');
+  a.href = encodeURI('javascript:(' + bookmarklet.toString().replace('{{base}}', base) + ')();');
   a.appendChild(document.createTextNode('volare2commons – Bookmarklet'));
   document.body.appendChild(a);
   </script>
