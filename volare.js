@@ -17,7 +17,7 @@ window.volare2commons = function() {
       img: (m = content.match(/[^"]*fedora.volare.vorarlberg.at[^"]*/)) && m[0],
       title: (m = content.match(/Titel: ([^<]+)/)) && m[1],
       collection: (m = content.match(/Sammlung: ([^<]+)/)) && m[1],
-      year: (m = content.match(/Jahr: (\d+)/)) && m[1],
+      year: (m = content.match(/Jahr: (\d+)/)) && m[1] || '{{other date|?}}',
       license: content.match('creativecommons.org/licenses/by/') ? '{{cc-by-sa-4.0}}' : '',
     };
 
