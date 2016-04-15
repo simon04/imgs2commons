@@ -4,9 +4,9 @@
   <h1>Helpers to upload images to Wikimedia Commons</h1>
   <h2>From <a href="http://pid.volare.vorarlberg.at/">volare</a>, Vorarlberger Landesrepositorium</h2>
   <script>
+  var base = document.location.href.replace('index.html', '').replace('/$', '');
   var bookmarklet = function() {
     var a = document.createElement('script');
-    var base = document.location.href.replace('index.html', '').replace('/$', '');
     a.src = base + '/volare.js';
     a.onload=function(){window.volare2commons()};
     document.head.appendChild(a);
