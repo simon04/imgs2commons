@@ -18,8 +18,8 @@ window.volare2commons = function() {
       title: (m = content.match(/Titel: ([^<]+)/)) && m[1],
       collection: (m = content.match(/Sammlung: ([^<]+)/)) && m[1],
       year: (m = content.match(/Jahr: (\d+)/)) && m[1] || '{{other date|?}}',
-      license: content.match('creativecommons.org/licenses/by/') ? '{{cc-by-sa-4.0}}' : '',
     };
+    var cc_by = content.match('creativecommons.org/licenses/by/');
 
     var description = [
       '=={{int:filedesc}}==',
@@ -28,12 +28,11 @@ window.volare2commons = function() {
       '|date=${year}',
       '|source=${source}',
       '|author=Sammlung ${collection}, Vorarlberger Landesbibliothek',
-      '|permission={{Volare|id=${id}|collection=${collection}}}',
       '|other versions=',
       '}}',
       '',
       '=={{int:license-header}}==',
-      '${license}',
+      cc_by ? '{{Volare|id=${id}|collection=${collection}}}' : '',
       '',
     ].join('\n');
 
