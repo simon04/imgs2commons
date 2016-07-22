@@ -8,14 +8,15 @@ window.volare2commons = function() {
   window.location = href;
 
   function extract() {
-    var content = document.getElementById('divcontent').innerHTML;
+    var elm = document.getElementById('inhalt');
+    var content = elm.innerHTML;
 
     var m;
     var info = {
       source: document.location.href,
       id: (m = document.location.href.match(/o:(\d+)/)) && m[1],
       img: (m = content.match(/[^"]*fedora.volare.vorarlberg.at[^"]*/)) && m[0],
-      title: (m = content.match(/Titel: ([^<]+)/)) && m[1],
+      title: (m = elm.getElementsByTagName('h2')) && m[0] && m[0].innerHTML,
       collection: (m = content.match(/Sammlung: ([^<]+)/)) && m[1],
       year: (m = content.match(/Jahr: (\d+)/)) && m[1] || '{{other date|?}}',
     };
