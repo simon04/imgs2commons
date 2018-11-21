@@ -21,7 +21,7 @@ window.volare2commons = function() {
       id: (m = document.location.href.match(/o:(\d+)/)) && m[1],
       img: (m = content.match(/[^"]*fedora.volare.vorarlberg.at[^"]*/)) && m[0],
       title: (m = elm.getElementsByTagName("h2")) && m[0] && m[0].innerHTML,
-      collection: (m = content.match(/Sammlung: ([^<]+)/)) && m[1],
+      collection: (m = content.match(/Sammlung: <[^>]+>([^<]+)/)) && m[1],
       year: ((m = content.match(/Jahr: (\d+)/)) && m[1]) || "{{other date|?}}"
     };
     var cc_by = content.match("creativecommons.org/licenses/by/");
