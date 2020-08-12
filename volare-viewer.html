@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>volare – Vorarlberger Landesrepositorium – Viewer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      img {
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body contenteditable>
+    Search for images on https://pid.volare.vorarlberg.at/ and paste them here.
+    Enjoy a large display!
+    <br />
+    <script>
+      document.body.onpaste = (event) => {
+        event.preventDefault();
+        const html = event.clipboardData.getData("text/html");
+        if (!html) return;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+
+        const ids = [...doc.getElementsByTagName("a")]
+          .map((link) => link.href)
+          .map((href) => href.match(/o:\d+$/))
+          .map((id) => (typeof id === "object" ? id[0] : undefined))
+          .filter((id) => typeof id === "string");
+
+        new Set(ids).forEach((id) => {
+          const img = document.createElement("img");
+          img.src = `https://fedora.volare.vorarlberg.at/fedora/get/${id}/bdef:Content/download`;
+          document.body.appendChild(img);
+          document.body.append(document.createElement("br"));
+
+          const a = document.createElement("a");
+          a.target = "_blank";
+          a.href = `https://pid.volare.vorarlberg.at/${id}`;
+          a.append(a.href);
+          document.body.append(a);
+          document.body.append(document.createElement("br"));
+        });
+      };
+    </script>
+  </body>
+</html>
